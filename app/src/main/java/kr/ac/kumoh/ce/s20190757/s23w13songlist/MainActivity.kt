@@ -61,15 +61,15 @@ fun SongItem(song: Song) {
             .background(Color(0xffffffcc))
             .padding(16.dp)
     ) {
-        TextTitle("노래 :${song.title}")
-        TextSinger("가수 :${song.singer}")
+        TextTitle("노래 : ${song.title}")
+        TextSinger("가수 : ${song.singer}")
         TextRating("평점 : " + song.rating)
     }
 }
 
 @Composable
 fun TextTitle(title: String) {
-    Text(title, fontSize = 20.sp)
+    Text(title, fontSize = 30.sp)
 }
 @Composable
 fun TextSinger(singer: String) {
