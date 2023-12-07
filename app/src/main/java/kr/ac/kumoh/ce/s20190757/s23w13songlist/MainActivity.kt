@@ -62,74 +62,7 @@ fun MainScreen(viewModel: SongViewModel) {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            SongList(songList)
-        }
-    }
-}
-
-@Composable
-fun SongItem(index: Int, song: Song) {
-    var expanded by remember { mutableStateOf(false) }
-
-    Card(
-        modifier = Modifier.clickable { expanded = !expanded },
-        elevation = CardDefaults.cardElevation(8.dp)
-    ) {
-        Row (
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(IntrinsicSize.Min)
-                .background(Color(255, 255, 255))
-                .padding(8.dp)
-        ) {
-            AsyncImage(
-                model = "https://picsum.photos/300/300?random=$index",
-                contentDescription = "노래 앨범 사진",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .size(100.dp)
-//                .clip(CircleShape)
-                    .clip(RoundedCornerShape(10))
-            )
-            Spacer(modifier = Modifier.width(10.dp))
-            Column (
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.SpaceAround
-            ) {
-                TextTitle(song.title)
-                TextSinger(song.singer)
-            }
-        }
-        AnimatedVisibility(visible = expanded) {
-            // nullable 뒤에 let 구문이 있으면 null이 아닐 때 가사 출력
-            // null이면 가사 미출력
-            song.lyrics?.let { Text(it) }
-        }
-    }
-}
-
-@Composable
-fun TextTitle(title: String) {
-    Text(title, fontSize = 20.sp)
-}
-@Composable
-fun TextSinger(singer: String) {
-    Text(singer, fontSize = 15.sp)
-}
-
-@Composable
-fun SongList(list: List<Song>) {
-    LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        contentPadding = PaddingValues(horizontal = 8.dp)
-    ) {
-//        items(list) {list ->
-//            SongItem(list)
-//        }
-        itemsIndexed(list) {index, song ->
-            SongItem(index, song)
+            SongApp(songList)
         }
     }
 }
